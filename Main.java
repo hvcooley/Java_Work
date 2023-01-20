@@ -1,37 +1,48 @@
 package dev.cooley;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args){
+        //Create a random array of integers, then sort it in descending order
 
-        //Demonstrating how array variables are references to array objects in memory
-        int[] myArray = new int[5];
-        int[] anotherArray = myArray;
+        int[] testArray = getRandomArray(10);
 
-        System.out.println(Arrays.toString(myArray));
-        System.out.println(Arrays.toString(anotherArray));
+        System.out.println("The array before sorting is " + Arrays.toString(testArray));
 
-        //Change affects both myArray and anotherArray. Shows how they reference same array object in memory
-        anotherArray[0] = 1;
-        System.out.println("The contents of myArray after the change are: " +
-                Arrays.toString(myArray));
-        System.out.println("The contents of anotherArray after the change are: " +
-                Arrays.toString(anotherArray));
+        sortArrayLowToHigh(testArray);
 
-        //Passing reference of an array to a function
-        changeArray(myArray);
-        changeArray(anotherArray);
-
-        System.out.println("The contents of myArray after the fucniton are: " +
-                Arrays.toString(myArray));
-        System.out.println("The contents of anotherArray after the function are: " +
-                Arrays.toString(anotherArray));
+        System.out.println("The array after sorting is " + Arrays.toString(testArray));
 
     }
 
-    //Using an array in a function parameter is also passing a reference to it
-    private static void changeArray(int[] arr){
-        arr[1] = 2;
+    private static int[] getRandomArray(int len){
+        Random random  = new Random();
+        int[] newIntArr = new int[len];
+        for (int i = 0; i < len; i++){
+            newIntArr[i] = random.nextInt(100);
+        }
+        return newIntArr;
+    }
+
+    //Naive solution: Search linearly through the array for the minimum then switch to front.
+    // then repeat searches excluding the previous front index until at the end of the array.
+    private static void sortArrayLowToHigh(int[] arr){
+        int front = 0;
+        while (front != arr.length){
+            int minElement = arr[front];
+            int minElIndex = front;
+            for (int i = front; i < arr.length; i++){
+                if (arr[i] < minElement){
+                    minElement = arr[i];
+                    minElIndex = i;
+                }
+            }//END for
+            //Perform swap of front and min
+            arr[minElIndex] = arr[front];
+            arr[front] = minElement;
+            front += 1;
+        }
     }
 }
