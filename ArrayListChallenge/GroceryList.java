@@ -17,9 +17,10 @@ public class GroceryList {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the grocery items to add in a comma delimetted list here: ");
         String input = scanner.nextLine();
-        String trimmedInput = input.replaceAll("\\s", "");;
+        //String trimmedInput = input.replaceAll("\\s", "");;
         //System.out.println("The trimmed input is " + trimmedInput);
-        String[] inputArray = trimmedInput.split(",");
+        //String[] inputArray = trimmedInput.split(",");
+        String[] inputArray = input.split(",");
         //System.out.println("Input is " + Arrays.toString(inputArray));
 
         for (String element: inputArray){
@@ -27,8 +28,12 @@ public class GroceryList {
                 continue;
             }
             else{
-                groceryList.add(element);
-                hashMap.put(element, true);
+                String trimmedElement = element.trim();
+                groceryList.add(trimmedElement);
+                hashMap.put(trimmedElement, true);
+
+                //groceryList.add(element);
+                //hashMap.put(element, true);
             }
         }
 
@@ -43,15 +48,21 @@ public class GroceryList {
 
         System.out.print("Enter the grocery items to remove in a comma delimetted list here: ");
         String input = scanner.nextLine();
-        String trimmedInput = input.replaceAll("\\s", "");;
+        //String trimmedInput = input.replaceAll("\\s", "");;
         //System.out.println("The trimmed input is " + trimmedInput);
-        String[] inputArray = trimmedInput.split(",");
+        //String[] inputArray = trimmedInput.split(",");
         //System.out.println("Input is " + Arrays.toString(inputArray));
 
+        String[] inputArray = input.split(",");
+
         for (String element: inputArray){
+            String trimmedElement = element.trim();
             if (hashMap.containsKey(element)) {
-                hashMap.remove(element);
-                groceryList.remove(element);
+                hashMap.remove(trimmedElement);
+                groceryList.remove(trimmedElement);
+
+                //hashMap.remove(element);
+                //groceryList.remove(element);
             }
         }
 
