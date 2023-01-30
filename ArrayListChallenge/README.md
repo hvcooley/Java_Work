@@ -1,2 +1,8 @@
 
-This is a challenge to create an interactive console program in Java that creates a grocery list. The user can add items to the grocery list and remove them. The GroceryList class checks that duplicates are not entered and keeps the list in sorted order. The program asks the user to enter list items in a comma delimited format, and the program converts this into an ArrayList by removing whitesapce and breaking the string up into individual elements based on where commas separate the items.
+This is a challenge to create an interactive console program in Java that creates a grocery list. Features:
+- The user can add items to the grocery list and remove them via typing to console in a comma delimited list
+- The grocery list is stored as an ArrayList in the GroceryList class
+- Program converts comma delimited list into an ArrayList by removing whitesapce and splitting the string by the location of commas. 
+- The GroceryList class checks that duplicates are not entered by maintaing a hash map
+- GroceryList class keeps the list in sorted order with ArrayList .sort() function
+- The main function validates menu input selection and prompts the user to re-enter if incorrect option is given
